@@ -1,7 +1,7 @@
-{% load static %}
 <!DOCTYPE html> <!-- Используется html 5 версии -->
 <html lang="ru"> <!-- Язык сайта - русский -->
-  <head>    
+{% load static %}
+<head>    
     <meta charset="utf-8"> <!-- Кодировка сайта -->
     <!-- Сайт готов работать с мобильными устройствами -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,35 +13,20 @@
     <meta name="msapplication-TileColor" content="#000">
     <meta name="theme-color" content="#ffffff">
     <!-- Подключен файл со стандартными стилями бустрап -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <title>Main page</title> 
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    {% block Title %} {{Title}} {%endblock%}
   </head>
-  <body>       
+  <body>    
     <header>
       {% include 'includes/header.html' %}
     </header>
     <main>
-      <div class="container">        
-        <h1>Последние обновления на сайте</h1>
-        <article>
-          {% for post in posts %}
-          <ul>
-           <li>
-             Автор: {{ post.author.get_full_name }}
-           </li>
-           <li>
-             Дата публикации: {{ post.pub_date|date:"d E Y" }}
-           </li>
-          </ul>
-        <p>{{ post.text }}</p>    
-        <a href="">все записи группы</a>
-        {% if not forloop.last %}<hr>{% endif %}
-        {% endfor %}
-        </article>
-      </div> 
+      {% block content %}
+        <!-- Содержимое страницы -->
+      {% endblock %}
     </main>
     <footer>
       {% include 'includes/footer.html' %} 
     </footer>
   </body>
-</html> 
+</html>

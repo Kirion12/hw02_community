@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 User = get_user_model()
 
@@ -17,8 +17,13 @@ class Post(models.Model):
         blank=True,
         null=True,
         on_delete=models.CASCADE,
+        # Увы без этого параметра выдает ошибку:
+        # __init__() missing 1 required positional argument: 'on_delete'
         related_name='posts'
     )
+
+    class Meta:
+        ordering = ['-pub_date']
 
 
 class Group(models.Model):
