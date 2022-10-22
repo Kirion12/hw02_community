@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -17,8 +16,8 @@ class Post(models.Model):
         'group',
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
-        related_name=NULL
+        on_delete=models.SET_NULL,
+        related_name='posts'
     )
 
     class Meta:
