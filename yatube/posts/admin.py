@@ -12,6 +12,4 @@ class PostAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Group)
-# не оч понял как затянуть админку в груп?
-# GroupAdmin показывает not defined
+admin.site.register(Group, PostAdmin)

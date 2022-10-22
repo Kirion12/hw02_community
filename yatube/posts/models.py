@@ -16,14 +16,12 @@ class Post(models.Model):
         'group',
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
-        # Увы без этого параметра выдает ошибку:
-        # __init__() missing 1 required positional argument: 'on_delete'
+        on_delete=models.NULL,
         related_name='posts'
     )
 
     class Meta:
-        ordering = ['-pub_date']
+        ordering = ('-pub_date',)
 
 
 class Group(models.Model):
